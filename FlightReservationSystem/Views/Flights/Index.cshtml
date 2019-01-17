@@ -1,0 +1,64 @@
+﻿@model IEnumerable<FlightReservationSystem.Models.FlightViewModel>
+
+@{
+    ViewBag.Title = "Flights";
+}
+
+<h2>Flights</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search By Destination: @Html.TextBox("SearchString")
+        <input type="submit" value="Search"/>
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightVM.AirlineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduleVM.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightVM.FlightClass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightVM.FlightPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduleVM.DepartureDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduleVM.DepartureTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlightVM.AirlineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleVM.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlightVM.FlightClass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlightVM.FlightPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleVM.DepartureDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleVM.DepartureTime)
+        </td>
+        
+    </tr>
+}
+
+</table>
