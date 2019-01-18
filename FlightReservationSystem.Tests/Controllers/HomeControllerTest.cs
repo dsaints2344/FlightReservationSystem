@@ -26,16 +26,16 @@ namespace FlightReservationSystem.Tests.Controllers
         }
 
         [TestMethod]
-        public void About()
+        public void RedirecttoFlightView()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            var result = (RedirectToRouteResult)controller.About();
 
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.IsNotNull(result);
+
         }
 
        
