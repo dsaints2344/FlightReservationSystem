@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FlightReservationSystem.Models.FlightViewModel>
+﻿@using System.Activities.Expressions
+@model IEnumerable<FlightReservationSystem.Models.FlightViewModel>
 
 @{
     ViewBag.Title = "Flights";
@@ -6,7 +7,7 @@
 
 <h2>Flights</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Flights"))
 {
     <p>
         Search By Destination: @Html.TextBox("SearchString")
@@ -34,7 +35,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ScheduleVM.DepartureTime)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduleVM.SourceId)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -56,6 +59,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ScheduleVM.DepartureTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleVM.SourceId)
+        </td>
+        <td>
+            @Html.ActionLink("Reserve","Reserve", "Flights", new {id = item.FlightVM.TicketId})
         </td>
         
     </tr>

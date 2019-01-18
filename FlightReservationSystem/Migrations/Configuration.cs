@@ -19,22 +19,27 @@ namespace FlightReservationSystem.Migrations
 
         protected override void Seed(FlightReservationSystem.Models.ApplicationDbContext context)
         {
+            //context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Flight', RESEED, 0)");
+            //context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Ticket', RESEED, 0)");
+            //context.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('Schedule', RESEED, 0)");
+
+
             ////  This method will be called after migrating to the latest version.
 
             ////  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             ////  to avoid creating duplicate seed data.
 
 
-            ////context.Flights.AddOrUpdate(f => f.FlightId,
-            ////    new Flight
-            ////    {
-            ////        AirlineName = "Jet Blue",
-            ////        FlightClass = "Economic",
-            ////        FlightSeat = "A26",
-            ////        FlightPrice = 200.00,
-            ////        TicketId = 1,
-            ////        ScheduleId = 1
-            ////    });
+            //context.Flights.AddOrUpdate(f => f.FlightId,
+            //    new Flight
+            //    {
+            //        AirlineName = "American Airlines",
+            //        FlightClass = "Business",
+            //        FlightSeat = "A38",
+            //        FlightPrice = 268.00,
+            //        TicketId = 2,
+            //        ScheduleId = 2
+            //    });
 
 
 
@@ -49,16 +54,17 @@ namespace FlightReservationSystem.Migrations
             //        Source = "Santo Domingo",
             //        SourceAirport = "Las Americas",
             //        SourceId = "SDQ",
-            //        Destination = "New York",
-            //        DestinationAirport = "JFK",
-            //        DestinationId = "NY",
-            //        FlightID = 1
+            //        Destination = "Orlando",
+            //        DestinationAirport = "Orlando International",
+            //        DestinationId = "FL",
+            //        FlightID = 2
             //    });
 
-            //context.Tickets.AddOrUpdate(t=> t.TicketId,
+            //context.Tickets.AddOrUpdate(t => t.TicketId,
             //    new Ticket
             //    {
-            //        FlightId = 1, Paid = false
+            //        FlightId = 2,
+            //        Paid = false
             //    });
 
 

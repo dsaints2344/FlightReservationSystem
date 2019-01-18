@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FlightReservationSystem.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FlightReservationSystem.Controllers
 {
@@ -15,7 +17,7 @@ namespace FlightReservationSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Flights
-        public ViewResult Index(string seachString)
+        public ActionResult Index(string seachString)
         {
             var query = (from f in db.Flights
                 join s in db.Schedules on f.ScheduleId equals s.ScheduleId into f2
@@ -32,6 +34,25 @@ namespace FlightReservationSystem.Controllers
             }
 
             return View(query.ToList());
+        }
+
+        public ActionResult Reserve(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var reserveId = db.Tickets.Find(id);
+            var currentUser = User.Identity.GetUserId();
+            if (reserveId.PassengerId == null)
+            {
+                reserveId.PassengerId = currentUser;
+                db.Tickets.AddOrUpdate(reserveId);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
         
